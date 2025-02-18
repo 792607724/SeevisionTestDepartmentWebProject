@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/common.css"/>
+<!--    <style>-->
+<!--        .c1 {-->
+<!--            color:red;-->
+<!--        }-->
+<!--    </style>-->
+    <style>
+        #c4 {
+            color:green;
+        }
+        li {
+            color:yellow;
+        }
+        input[type="text"] {
+            border: 1px solid red;
+        }
+        .v1[xx="456"] {
+            color: gold;
+        }
+        .yy li {
+            color: blue;
+        }
+        .yy>a {
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="c1">用户登录</h1>
+    <h1 class="c2">啊实打实的</h1>
+    <h1 class="c1">风格和风格和</h1>
+    <h1 class="c2">VB女版</h1>
+    <form method="post" action="/login">
+        <div class="c2">
+            用户名：<input type="text" name="username">
+        </div>
+        <div class="c2">
+            密码：<input type="password" name="password">
+        </div>
+
+        <input type="submit" value="提交">
+    </form>
+
+    <div class="c1">中国</div>
+    <div id="c4">广西</div>
+    <div id="c4">联通</div>
+    <ul>
+        <li>中国</li>
+        <li>广西</li>
+        <li>联通</li>
+    </ul>
+    <input type="text">
+    <input type="password">
+
+    <div class="v1" xx="123">s</div>
+    <div class="v1" xx="456">b</div>
+    <div class="yy">
+        <a>百度</a>
+        <div>
+            <a>谷歌</a>
+        </div>
+        <ul>
+            <li>美国</li>
+            <li>日本</li>
+            <li>韩国</li>
+        </ul>
+    </div>
+</body>
+</html>
