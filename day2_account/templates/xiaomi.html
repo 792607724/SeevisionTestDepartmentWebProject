@@ -6,6 +6,7 @@
     <style>
         body {
             margin:0;
+            height: 1500px;
         }
         body .container {
             width: 1226px;
@@ -139,6 +140,78 @@
             display: block;
             text-align: center;
         }
+
+        .app .download {
+            width: 114px;
+            height: 114px;
+            display: none;
+        }
+
+        .app .tryDownload {
+            width: 100px;
+            height: 100px;
+            bottom,:5px;
+        }
+
+        .app_download {
+            position: relative;
+        }
+
+        .app_download:hover .download{
+            display: block;
+            position: absolute;
+            bottom: -15px;
+            left: -25px;
+        }
+
+<!--        .app_download:hover .tryDownload:after {-->
+<!--            color: red;-->
+<!--            content: "（点击即可进行下载！）";-->
+<!--        }-->
+
+        .clearfix:after {
+            clear: both;
+            content: "";
+            display: both;
+        }
+
+        .backTop {
+            background-color: white;
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            right: 30px;
+            bottom: 50px;
+        }
+
+        .dialog {
+            position: fixed;
+            height: 300px;
+            width: 500px;
+            background: white;
+
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 200px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .mask {
+            background-color: black;
+            position: fixed;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            opacity: 0.7;
+<!--            display: none;-->
+            z-index: 999;
+            display: none;
+        }
+
+
     </style>
 </head>
 <body>
@@ -154,6 +227,14 @@
               <a href="https://www.mi.com">登录</a>
               <a href="https://www.mi.com">注册</a>
               <a href="https://www.mi.com">消息通知</a>
+              <a class="app_download" href="https://www.mi.com">下载app
+                  <div class="app">
+                        <div class="left tryDownload"></div>
+                        <div class=" left download">
+                            <img src="../images/download.png">
+                        </div>
+                </div>
+              </a>
           </div>
       </div>
       <div style="clear: both"></div>
@@ -239,8 +320,18 @@
             <div class="left list-item">
                 <img src="../images/b4.png">
             </div>
+
             <div class="clear: both"></div>
         </div>
+    </div>
+    <div class="backTop">
+        <img src="../images/totop_hover.png">
+    </div>
+    <div class="mask">
+
+    </div>
+    <div class="dialog">
+
     </div>
 </body>
 </html>
