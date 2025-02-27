@@ -5,17 +5,60 @@
     <title>Bootstrap</title>
     <!--    开发版本-->
     <link rel="stylesheet" href="static/plugins/bootstrap-5.3.2-dist/css/bootstrap.css">
-
+    <script src="static/plugins/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>
     <!--    生产版本-->
     <!--    <link rel="stylesheet" href="static/plugins/bootstrap-5.3.2-dist/css/bootstrap.min.css">-->
 </head>
 <body>
-    <input type="button" value="提交">asdas
-    <input type="button" value="提交" class="btn btn-primary">
-    <input type="button" value="提交" class="btn btn-success">
-    <input type="button" value="提交" class="btn btn-danger">
-    <input type="button" value="提交" class="btn btn-danger btn-xs">
+<!--<input type="button" value="提交">asdas-->
+<!--<input type="button" value="提交" class="btn btn-primary">-->
+<!--<input type="button" value="提交" class="btn btn-success"> <input type="button" value="提交" class="btn btn-danger">-->
+<!--<input type="button" value="提交" class="btn btn-danger btn-xs">-->
 
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">测试部</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">BSP板</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">其他辅助脚本</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        预研新技术
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Android</a></li>
+                        <li><a class="dropdown-item" href="#">Web</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">自动化测试工具</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item"><a class="nav-link" href="#">登录</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">注册</a></li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
 
 </body>
 </html>
