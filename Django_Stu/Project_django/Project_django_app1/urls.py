@@ -31,4 +31,6 @@ urlpatterns = [
     path("arithmetic/", views.arithmetic),
     path("greetings/", views.Greetings.as_view(greetings="Hello Python")),
     path("html/", views.Html.as_view()),
+    path("json/", views.Json.as_view()),
+    path("download/<path:file_path>", views.file_download, name="file_download"),
 ]

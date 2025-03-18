@@ -1,4 +1,6 @@
-from django.http import HttpResponse
+import os.path
+
+from django.http import HttpResponse, JsonResponse, Http404, FileResponse
 from django.shortcuts import render
 from django.views import View
 
@@ -37,6 +39,18 @@ class Html(View):
         return HttpResponse(html)
 
 
+class Json(View):
+    def get(self, request):
+        data = {"author": "Guangtao"}
+        # # 响应数据中包含非ASCII字符，需要将ensure_ascii设置为False
+        # json_data = json.dumps(data, ensure_ascii=False)
+        # # 通过HttpResponse的content_type参数来指定MIME类型
+        # return HttpResponse(json_data, content_type="application/json")
+
+        # 也可以直接通过JsonResponse来响应Json格式的数据
+        return JsonResponse(data, json_dumps_params={"ensure_ascii": False})
+
+
 # 新增arithmetic视图
 def arithmetic(request):
     """
@@ -59,3 +73,20 @@ def arithmetic(request):
     else:
         result = commands.get(action, lambda x, y: 0)(b, a)
     return HttpResponse(str(result))
+
+
+def file_download(request, file_path):
+    file_path = "./Project_django_app1/download/" + file_path
+    print(os.path.basename)
+    ext = os.path.basename(file_path).split(".")[-1].lower()
+    print("ext: {}".format(ext))
+    print("file_path: {}".format(file_path))
+    print("os.path: {}".format(os.path.exists(file_path)))
+    if ext in ["txt", "dox", "doxs", "xlsx"]:
+        try:
+            response = FileResponse(open(file_path, "rb"))
+            response["Content-Type"] = "application/octet-stream"
+            response["Content-Disposition"] = "attachment; filename=" + os.path.basename(file_path)
+            return response
+        except FileNotFoundError:
+            raise Http404("文件未找到")
