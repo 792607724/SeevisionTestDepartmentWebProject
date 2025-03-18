@@ -1,4 +1,4 @@
-"""Project_django URL Configuration
+"""Project_django_app1 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -14,12 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+import Project_django_app1.views as views
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
-import Project_django.views as views
-
+"""
+    浏览器向服务器发起http get请求，django收到请求后执行视图类的as_view方法，该方法会
+    返回在类视图中定义的get方法，然后对get请求进行处理
+"""
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path("", views.Home.as_view(), name="home"),
+    path("personal/<int:id>", views.personal),
+    re_path("personal/(\d+).html", views.personal),
+    path("arithmetic/", views.arithmetic),
+    path("greetings/", views.Greetings.as_view(greetings="Hello Python")),
+    path("html/", views.Html.as_view()),
 ]
