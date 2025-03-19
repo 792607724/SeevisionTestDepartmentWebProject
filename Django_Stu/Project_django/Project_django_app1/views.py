@@ -1,7 +1,9 @@
 import os.path
 
-from django.http import HttpResponse, JsonResponse, Http404, FileResponse
-from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse, Http404, FileResponse, HttpResponseRedirect, \
+    HttpResponsePermanentRedirect
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 
@@ -23,20 +25,6 @@ class Greetings(View):
 
     def get(self, request):
         return HttpResponse(self.greetings)
-
-
-class Html(View):
-    title = "根据客户端的查询请求来响应不同的html"
-
-    def get(self, request):
-        """
-            获取查询参数label，表示html标签，获取查询参数content，表示标签中的内容
-        """
-        label = request.GET.get("label", "h1")
-        content = request.GET.get("content", "Hello Django")
-        html = ("<html><head><title>{0}</title></head><{1}>{2}</{1}></html>"
-                .format(self.title, label, content))
-        return HttpResponse(html)
 
 
 class Json(View):
@@ -90,3 +78,54 @@ def file_download(request, file_path):
             return response
         except FileNotFoundError:
             raise Http404("文件未找到")
+
+
+"""
+    临时重定向：
+    302：对于Get、Head等幂等请求，会根据服务端响应Location字段中的url重新发起请求
+    对于Post请求，大部分浏览器会将请求方式改为Get
+    307：对于Get、Head等幂等请求，会根据服务端响应的Location字段中的url重新发起请求
+    对于Post请求，会询问客户端是否对新url再次发起Post请求
+    
+    永久重定向：
+    301：对于Get、Head等幂等请求，会根据服务端响应的Location字段中的url重新发起请求
+    对于Post请求，部分浏览器会将请求方式改为Get
+"""
+
+
+class Html(View):
+    title = "根据客户端的查询请求来响应不同的html"
+
+    def get(self, request):
+        # # 临时重定向
+        # # 直接传递硬编码的url
+        # return HttpResponseRedirect("/html5/")
+
+        # # 永久重定向
+        # # 直接传递完整的url
+        # return HttpResponsePermanentRedirect("http://127.0.0.1:8080/html5/")
+
+        # # 根据需求，进行临时重定向或者永久重定向
+        # return redirect("/html5/", permanent=True)
+
+        # 通过reverse反向解析并传递参数
+        print("==================================")
+        html5_url = reverse("html5", kwargs={"label": "article"})
+        print("html5_url: {}".format(html5_url))
+        return HttpResponseRedirect(html5_url)
+
+
+class Html5(View):
+    title = "根据客户端的查询请求来响应不同的html"
+
+    def get(self, request, label):
+        html5_url = reverse("html5", kwargs={"label": "article"})
+        print("html5_url: {}".format(html5_url))
+        """
+            获取查询参数label，表示html标签，获取查询参数content，表示标签中的内容
+        """
+        # label = request.GET.get("label", "h1")
+        content = request.GET.get("content", "Hello Django")
+        html = ("<html><head><title>{0}</title></head><{1}>{2}</{1}></html>"
+                .format(self.title, label, content))
+        return HttpResponse(html)

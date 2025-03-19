@@ -33,4 +33,7 @@ urlpatterns = [
     path("html/", views.Html.as_view()),
     path("json/", views.Json.as_view()),
     path("download/<path:file_path>", views.file_download, name="file_download"),
+    # path("html5/", views.Html5.as_view()),
+    path("html5/<label>/", views.Html5.as_view(), name="html5"),
 ]
+
