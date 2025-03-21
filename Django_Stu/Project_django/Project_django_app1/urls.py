@@ -35,5 +35,8 @@ urlpatterns = [
     path("download/<path:file_path>", views.file_download, name="file_download"),
     # path("html5/", views.Html5.as_view()),
     path("html5/<label>/", views.Html5.as_view(), name="html5"),
+    # 新增代码，在url中使用正则表达式
+    re_path("blog/(\d+).html", views.blog),
+
 ]
 

@@ -129,3 +129,8 @@ class Html5(View):
         html = ("<html><head><title>{0}</title></head><{1}>{2}</{1}></html>"
                 .format(self.title, label, content))
         return HttpResponse(html)
+
+
+def blog(request, page_id):
+    if request.method == "GET":
+        return render(request, "blog.html", {"page_id": page_id})
